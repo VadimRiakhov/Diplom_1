@@ -7,9 +7,9 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class BunParameterizedTest {
-    Bun bun;
-    String name;
-    float price;
+    private final Bun bun;
+    private final String name;
+    private final float price;
 
     public BunParameterizedTest(String name, float price){
         bun = new Bun(name, price);

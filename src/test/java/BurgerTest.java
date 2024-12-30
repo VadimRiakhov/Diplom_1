@@ -12,9 +12,9 @@ import praktikum.IngredientType;
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class    BurgerTest {
+public class BurgerTest {
 
-    Burger burger;
+    private Burger burger;
 
     @Mock
     Bun mockBun;
@@ -31,6 +31,17 @@ public class    BurgerTest {
     @Before
     public void initBurger(){
         burger = new Burger();
+        // стаб для mockBun
+        Mockito.when(mockBun.getName()).thenReturn("Булочка");
+        Mockito.when(mockBun.getPrice()).thenReturn(10F);
+        // стаб для mockIngredient1
+        Mockito.when(mockIngredient1.getType()).thenReturn(IngredientType.FILLING);
+        Mockito.when(mockIngredient1.getName()).thenReturn("Котлета");
+        Mockito.when(mockIngredient1.getPrice()).thenReturn(2F);
+        // стаб для mockIngredient2
+        Mockito.when(mockIngredient2.getType()).thenReturn(IngredientType.SAUCE);
+        Mockito.when(mockIngredient2.getName()).thenReturn("Кетчуп");
+        Mockito.when(mockIngredient2.getPrice()).thenReturn(3F);
     }
 
     // проверка установки поля Bun экземпляра класса Burger
@@ -83,12 +94,6 @@ public class    BurgerTest {
     public void getPriceTest(){
         float expectedPrice = 25;
         float delta = 0;
-        // стаб для mockBun
-        Mockito.when(mockBun.getPrice()).thenReturn(10F);
-        // стаб для mockIngredient1
-        Mockito.when(mockIngredient1.getPrice()).thenReturn(2F);
-        // стаб для mockIngredient2
-        Mockito.when(mockIngredient2.getPrice()).thenReturn(3F);
         burger.setBuns(mockBun);
         burger.addIngredient(mockIngredient1);
         burger.addIngredient(mockIngredient2);
@@ -102,17 +107,6 @@ public class    BurgerTest {
         burger.setBuns(mockBun);
         burger.addIngredient(mockIngredient1);
         burger.addIngredient(mockIngredient2);
-        // стаб для mockBun
-        Mockito.when(mockBun.getName()).thenReturn("Булочка");
-        Mockito.when(mockBun.getPrice()).thenReturn(10F);
-        // стаб для mockIngredient1
-        Mockito.when(mockIngredient1.getType()).thenReturn(IngredientType.FILLING);
-        Mockito.when(mockIngredient1.getName()).thenReturn("Котлета");
-        Mockito.when(mockIngredient1.getPrice()).thenReturn(2F);
-        // стаб для mockIngredient2
-        Mockito.when(mockIngredient2.getType()).thenReturn(IngredientType.SAUCE);
-        Mockito.when(mockIngredient2.getName()).thenReturn("Кетчуп");
-        Mockito.when(mockIngredient2.getPrice()).thenReturn(3F);
         String actualReceipt = burger.getReceipt();
         // ожидаемый чек
         String expectedReceipt = String.format("(==== %s ====)%n= %s %s =%n= %s %s =%n(==== %s ====)%n%nPrice: %f%n",

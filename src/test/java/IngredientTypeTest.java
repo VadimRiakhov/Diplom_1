@@ -1,22 +1,19 @@
 import org.junit.Test;
 import praktikum.IngredientType;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class IngredientTypeTest {
     // проверка значения SAUCE
     @Test
     public void checkIngredientTypeSauceTest(){
-        assertThat(IngredientType.valueOf("SAUCE"), is(notNullValue()));
+        assertEquals(IngredientType.SAUCE, IngredientType.valueOf("SAUCE"));
     }
 
     // проверка значения FILLING
     @Test
     public void checkIngredientTypeFillingTest(){
-        assertThat(IngredientType.valueOf("FILLING"), is(notNullValue()));
+        assertEquals(IngredientType.FILLING, IngredientType.valueOf("FILLING"));
     }
 
     // проверка количества полей в классе IngredientType
